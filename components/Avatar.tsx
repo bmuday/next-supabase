@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "../utils/database.types";
+import Image from "next/image";
+
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Avatar({
@@ -72,22 +74,12 @@ export default function Avatar({
   return (
     <div>
       {avatarUrl ? (
-        <img
-          src={avatarUrl}
-          alt="Avatar"
-          className="avatar image"
-          style={{ height: size, width: size }}
-        />
+        <Image src={avatarUrl} alt="Avatar" height={size} width={size} />
       ) : (
-        <div
-          className="avatar no-image"
-          style={{ height: size, width: size }}
-        />
+        <div />
       )}
       <div style={{ width: size }}>
-        <label className="button primary block" htmlFor="single">
-          {uploading ? "Uploading ..." : "Upload"}
-        </label>
+        <label htmlFor="single">{uploading ? "Uploading ..." : "Upload"}</label>
         <input
           style={{
             visibility: "hidden",

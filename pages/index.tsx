@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import { Auth } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Account from "../components/Account";
+import App from "./app";
 
 const Home = () => {
   const session = useSession();
@@ -15,11 +15,9 @@ const Home = () => {
         <Auth
           providers={["github", "google"]}
           supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          theme="dark"
         />
       ) : (
-        <Account session={session} />
+        <App />
       )}
     </div>
   );
